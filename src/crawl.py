@@ -11,7 +11,7 @@ class Crawler:
             fullUrl = url + id
             response = requests.get(fullUrl)
             data = response.json()
-            data["symbol"] = id.upper()
+            data["ticker"] = id.upper()
             tempData.append(data)
         return tempData
     
@@ -25,7 +25,7 @@ class Crawler:
                 fullUrl = tempUrl + str(index) 
                 response = requests.get(fullUrl)
                 data = response.json()
-                data["symbol"] = id.upper()
+                data["ticker"] = id.upper()
                 tempData.append(data)
         return tempData
             
