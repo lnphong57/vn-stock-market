@@ -10,12 +10,12 @@ class Cleaner:
             }
             indicators["symbol"] = temp["symbol"]
             cleanData = {
-                "ID": indicators["symbol"],
-                "EPS cơ bản (nghìn đồng)": float(indicators["EPScoBan"]),
-                "EPS pha loãng (nghìn đồng)": float(indicators["EPSphaLoang"]),
-                "Giá trị sổ sách (nghìn đồng)": float(indicators["GiaTriSoSach"].replace(",","")),
-                "Vốn hóa thị trường (tỷ đồng)": float(indicators["VonHoaThiTruong"].replace(",","")),
-                "Khối lượng cổ phiếu lưu hành": float(indicators["KlcpLuuHanh"].replace(",",""))
+                "ticker": indicators["symbol"],
+                "basicEPS": float(indicators["EPScoBan"]) * 1000,
+                "dilutedEPS": float(indicators["EPSphaLoang"]) * 1000,
+                "bookValue": float(indicators["GiaTriSoSach"].replace("_","")) * 1000,
+                "marketCap": float(indicators["VonHoaThiTruong"].replace("_","")) * 1_000_000_000,
+                "outstandingShares": float(indicators["KlcpLuuHanh"].replace("_",""))
                 }
             tempData.append(cleanData)
         return tempData
@@ -28,15 +28,15 @@ class Cleaner:
             rawItem = raw["Data"]        
             for day in rawItem:
                 indicators = {
-                    "symbol": item["symbol"],
-                    "Ngày": day["Ngay"],
-                    "Mở cửa": day["GiaMoCua"],
-                    "Đóng cửa": day["GiaDongCua"],
-                    "Thay đổi": day["ThayDoi"],
-                    "Khối lượng": day["KhoiLuongKhopLenh"],
-                    "Giá trị giao dịch": day["GiaTriKhopLenh"],
-                    "Cao nhất": day["GiaCaoNhat"],
-                    "Thấp nhất": day["GiaThapNhat"],                
+                    "ticker": item["symbol"],
+                    "date": day["Ngay"],
+                    "open": day["GiaMoCua"],
+                    "close": day["GiaDongCua"],
+                    "change": day["ThayDoi"],
+                    "volume": int(f"{day['KhoiLuongKhopLenh']:_}"),
+                    "transaction_value": int(f"{day['GiaTriKhopLenh']:_}"),
+                    "high": day["GiaCaoNhat"],
+                    "low": day["GiaThapNhat"],                
                 }            
                 tempData.append(indicators)
         return tempData
