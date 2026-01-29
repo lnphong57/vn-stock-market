@@ -1,6 +1,6 @@
-import json
+
 class Cleaner:
-    def clean_bank_info(self, data):
+    def clean_bctc(self, data):
         tempData = []
         for temp in data:
             raw = temp["Data"]

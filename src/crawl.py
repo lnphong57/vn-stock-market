@@ -1,5 +1,5 @@
 import requests
-import json
+import const
 from playwright.sync_api import sync_playwright
 class Crawler:  
     def __init__(self, banks, marketIndex, url):
