@@ -57,7 +57,3 @@ class Crawler:
                 data["ticker"] = id.upper()
                 tempData.append(data)
         return tempData
-    
-crawl_data = Crawler(const.bankId, const.marketIndex, const.url)
-
-crawl_data.crawl_bctc()   

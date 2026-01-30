@@ -1,2 +1,2 @@
-class features:
-    def MovingAverage(self)
+class Features:
+    pass
