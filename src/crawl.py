@@ -10,17 +10,22 @@ class Crawler:
     def crawl_bctc(self):
         all_data = {}
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=["--disable-blink-features=AutomationControlled", "--start-maximized"])
+            browser = p.chromium.launch(headless=False, args=["--disable-blink-features=AutomationControlled", "--start-maximized"])
 
         # Tạo context với User Agent thật (giả làm Chrome trên Windows 10)
             context = browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 viewport={"width": 1920, "height": 1080} # Set màn hình to để tránh giao diện mobile
             )
+            
+            
             for link, symbol in zip(const.url, const.bankId):
                 temp = []
                 page = context.new_page()
                 page.goto(link, timeout=60000)
+                button = page.locator("span.fa.fa-chevron-left.pull-left")
+                page.wait_for_timeout(15000)
+                button.first.click()
                 finance = page.locator("div.pos-relative")
                 tables = finance.locator("div.table-responsive")
                 firstTable = tables.nth(0)
@@ -53,4 +58,6 @@ class Crawler:
                 tempData.append(data)
         return tempData
     
-    
+crawl_data = Crawler(const.bankId, const.marketIndex, const.url)
+
+crawl_data.crawl_bctc()   
