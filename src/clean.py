@@ -6,13 +6,13 @@ vi_to_en_map = {
     "Tổng LNST": "net_profit",
     "LNST của CĐ Ngân hàng mẹ": "net_profit_(parent)",
     "Tổng tài sản": "total_assets",
-    "- Tiền, vàng gửi và cho vay các TCTD": "Interbank Assets",
+    "- Tiền, vàng gửi và cho vay các TCTD": "interbank_assets",
     "- Cho vay khách hàng": "customer_loans",
     "Nợ phải trả": "total_liabilities",
-    "- Tiền gửi và vay các TCTD": "Interbank Liabilities",
+    "- Tiền gửi và vay các TCTD": "interbank_liabilities",
     "- Tiền gửi của khách hàng": "customer_deposits",
     "Vốn và các quỹ": "equity",
-    "- Vốn của TCTD": "Charter Capital",
+    "- Vốn của TCTD": "charter_capital",
     "- Lợi nhuận chưa phân phối": "retained_earnings",
     "EPS 4 quý": "eps_ttm",
     "BVPS cơ bản": "bvps",
@@ -41,7 +41,7 @@ class Cleaner:
             for i, q in enumerate(quarters):
                 row = {
                     "symbol": symbol,
-                    "Quý": q
+                    "quarter": q
                 }
                 for m in metrics:
                     key = m[0]
