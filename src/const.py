@@ -1,6 +1,6 @@
 bankId = [
         "ACB", "BID", "CTG", "EIB","EVF", "HDB", "KLB", "LPB", "MBB", "MSB", "NAB", 
-        "OCB", "PVF", "SHB", "SSB", "STB", "TCB", "TPB", "VAB", "VCB", "VIB", "VPB"
+        "OCB", "SHB", "SSB", "STB", "TCB", "TPB", "VAB", "VCB", "VIB", "VPB"
         ]
 marketIndex = ["VNINDEX"]
 allSymbols = bankId + marketIndex
@@ -17,7 +17,6 @@ url = [
         "https://finance.vietstock.vn/MSB-ngan-hang-tmcp-hang-hai-viet-nam.htm?tab=BCTQ",
         "https://finance.vietstock.vn/NAB-ngan-hang-tmcp-nam-a.htm?tab=BCTQ",
         "https://finance.vietstock.vn/OCB-ngan-hang-tmcp-phuong-dong.htm?tab=BCTQ",
-        "https://finance.vietstock.vn/PVF-tong-cong-ty-tai-chinh-co-phan-dau-khi-viet-nam.htm?tab=BCTQ",
         "https://finance.vietstock.vn/SHB-ngan-hang-tmcp-sai-gon-ha-noi.htm?tab=BCTQ",
         "https://finance.vietstock.vn/SSB-ngan-hang-tmcp-dong-nam-a.htm?tab=BCTQ",
         "https://finance.vietstock.vn/STB-ngan-hang-tmcp-sai-gon-thuong-tin.htm?tab=BCTQ",
