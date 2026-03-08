@@ -51,7 +51,7 @@ class Crawler:
     
     def crawl_price_history(self):
         symbolUrl = "https://cafef.vn/du-lieu/Ajax/PageNew/DataHistory/PriceHistory.ashx?Symbol="
-        pageIndex = "&StartDate=&EndDate=&PageIndex="  
+        pageIndex = "&StartDate=&EndDate=&PageIndex=20"  
         tempData = []       
         for id in self.allSymbols:
             tempUrl = symbolUrl + id +pageIndex
