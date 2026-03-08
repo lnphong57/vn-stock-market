@@ -1,6 +1,7 @@
 import crawl
 import clean
 import const
+import pandas as pd
 import json
 def save_json(data, filepath):
     with open(filepath, "w", encoding="utf-8") as file:

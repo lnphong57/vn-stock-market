@@ -1,10 +1,12 @@
 import json
+import pandas as pd
+import re
 vi_to_en_map = {
     "Thu nhập lãi thuần": "net_interest_income",
     "Chi phí hoạt động": "operating_expenses",
     "Tổng TNTT": "profit_before_tax",
     "Tổng LNST": "net_profit",
-    "LNST của CĐ Ngân hàng mẹ": "net_profit_(parent)",
+    "LNST của CĐ Ngân hàng mẹ": "net_profit_parent",
     "Tổng tài sản": "total_assets",
     "- Tiền, vàng gửi và cho vay các TCTD": "interbank_assets",
     "- Cho vay khách hàng": "customer_loans",
@@ -21,6 +23,13 @@ vi_to_en_map = {
     "ROAA": "roaa"
 }
 class Cleaner:
+    def percent(self, x):
+        match = re.search(r'\(([-+]?\d+,\d+)\s*%\)', x)
+
+        if match:
+            percent_str = match.group(1)          # "-1,88"
+            percent_float = float(percent_str.replace(",", "."))  
+            return percent_float
     def to_number(self, x):
         if x is None:
             return None
@@ -61,13 +70,11 @@ class Cleaner:
                     "date": day["Ngay"],
                     "open": day["GiaMoCua"],
                     "close": day["GiaDongCua"],
-                    "change": day["ThayDoi"],
-                    "volume": int(f"{day['KhoiLuongKhopLenh']:_}"),
-                    "transaction_value": int(f"{day['GiaTriKhopLenh']:_}"),
+                    "price_change_pct": self.percent(day["ThayDoi"]),
+                    "volume": int(f"{day['KhoiLuongKhopLenh']}"),
+                    "transaction_value": (f"{day['GiaTriKhopLenh']}"),
                     "high": day["GiaCaoNhat"],
                     "low": day["GiaThapNhat"],                
                 }            
                 tempData.append(indicators)
         return tempData
-
-

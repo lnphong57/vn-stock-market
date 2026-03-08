@@ -55,10 +55,10 @@ class Crawler:
         tempData = []       
         for id in self.allSymbols:
             tempUrl = symbolUrl + id +pageIndex
-            for index in range(1, 21):
+            for index in range(1, 41):
                 fullUrl = tempUrl + str(index) 
                 response = requests.get(fullUrl)
                 data = response.json()
-                data["ticker"] = id.upper()
+                data["symbol"] = id.upper()
                 tempData.append(data)
         return tempData
