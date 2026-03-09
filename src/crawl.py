@@ -51,12 +51,13 @@ class Crawler:
     
     def crawl_price_history(self):
         symbolUrl = "https://cafef.vn/du-lieu/Ajax/PageNew/DataHistory/PriceHistory.ashx?Symbol="
-        pageIndex = "&StartDate=&EndDate=&PageIndex=20"  
+        pageIndex = "&StartDate=&EndDate=&PageIndex="
+        pageSize = "&PageSize=20"
         tempData = []       
         for id in self.allSymbols:
             tempUrl = symbolUrl + id +pageIndex
             for index in range(1, 41):
-                fullUrl = tempUrl + str(index) 
+                fullUrl = tempUrl + str(index) + pageSize
                 response = requests.get(fullUrl)
                 data = response.json()
                 data["symbol"] = id.upper()

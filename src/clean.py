@@ -72,7 +72,7 @@ class Cleaner:
                     "close": day["GiaDongCua"],
                     "price_change_pct": self.percent(day["ThayDoi"]),
                     "volume": int(f"{day['KhoiLuongKhopLenh']}"),
-                    "transaction_value": (f"{day['GiaTriKhopLenh']}"),
+                    "transaction_value": float(f"{day['GiaTriKhopLenh']}"),
                     "high": day["GiaCaoNhat"],
                     "low": day["GiaThapNhat"],                
                 }            
